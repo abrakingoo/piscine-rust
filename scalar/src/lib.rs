@@ -19,16 +19,10 @@ pub fn diff(a: i16, b: i16) -> i16 {
 }
 
 pub fn pro(a: i8, b: i8) -> i8 {
-    let result = a * b;
-
-    if result < -128 || result > 127 {
-        panic!("ERROR: attempt to multiply with overflow");
-    }
-
-    result
+    a * b
 }
 
-pub fn quo(a: i32, b: i32) -> i32 {
+pub fn quo(a: f32, b: f32) -> f32 {
     if b == 0 {
         panic!("ERROR: attempt to divide by zero");
     }
@@ -36,7 +30,7 @@ pub fn quo(a: i32, b: i32) -> i32 {
     a / b
 }
 
-pub fn rem(a: i32, b: i32) -> i32 {
+pub fn rem(a: f32, b: f32) -> f32 {
     if b == 0 {
         panic!("ERROR: attempt to divide by zero");
     }
