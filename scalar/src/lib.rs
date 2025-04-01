@@ -23,7 +23,7 @@ pub fn pro(a: i8, b: i8) -> i8 {
 }
 
 pub fn quo(a: f32, b: f32) -> f32 {
-    if b == 0 {
+    if b == 0.0 {
         panic!("ERROR: attempt to divide by zero");
     }
 
@@ -31,7 +31,7 @@ pub fn quo(a: f32, b: f32) -> f32 {
 }
 
 pub fn rem(a: f32, b: f32) -> f32 {
-    if b == 0 {
+    if b == 0.0 {
         panic!("ERROR: attempt to divide by zero");
     }
 
