@@ -1,7 +1,9 @@
 pub fn fahrenheit_to_celsius(f: f64) -> f64 {
-    (f - 32.0) * 5.0 / 9.0
+    // Convert from Fahrenheit to Celsius and round to 6 decimal places
+    ((f - 32.0) * 5.0 / 9.0).round() / 1_000_000.0
 }
 
 pub fn celsius_to_fahrenheit(c: f64) -> f64 {
-    (c * 9.0 / 5.0) + 32.0
+    // Convert from Celsius to Fahrenheit and round to 6 decimal places
+    ((c * 9.0 / 5.0) + 32.0).round() / 1_000_000.0
 }
