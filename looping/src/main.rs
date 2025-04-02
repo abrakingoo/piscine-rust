@@ -1,38 +1,24 @@
-
 fn main() {
     use std::io;
-    let mut input = String::new();
-    let answer = "e";
     let mut count = 0;
-
+    let answer = "The letter e";
     loop {
-        print!("I am the beginning of the end, and the end of time and space. \nI am essential to creation, and I surround every place. What am I?: ");
-        
-        // Clear the input buffer before each new read
-        input.clear();
-        
-        // Read the user input
-        io::stdin().read_line(&mut input).expect("Failed to read line");
-        
-        // Trim the input to remove any trailing newline characters
-        let input = input.trim();
+        count += 1;
 
-        // Check if the answer is correct
+        println!("I am the beginning of the end, and the end of time and space. I am essential to creation, and I surround every place. What am I?");
+        let mut input = String::new();
+        io::stdin()
+            .read_line(&mut input)
+            .expect("Failed to read line");
+        let input = input.trim();
         match input {
-            // If input matches answer, break the loop
             s if s == answer => {
                 println!("Number of trials: {}", count);
                 break;
             }
-            // Otherwise, keep asking for input
             _ => {
-                count += 1;
                 continue;
             }
         }
     }
-
-    // Output the number of attempts (incorrect answers before the correct one)
-    println!("Number of trials: {}", count);
 }
-
