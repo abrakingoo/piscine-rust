@@ -5,5 +5,5 @@ pub fn insert(vec: &mut Vec<String>, val: String) {
 
 // returns the value found at the index passed as an argument.
 pub fn at_index(slice: &[String], index: usize) -> &str {
-        &slice[index];
+    &slice[index];
 }
