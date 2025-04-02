@@ -18,14 +18,13 @@ I am essential to creation, and I surround every place. What am I?: ");
             
                 let input = input.trim();
             
-                if input != answer {
-                    count += 1;
-                    println!("Your Answer: {}",input);
-                } else {
+                if input == answer {
                     break;
+                } else {
+                    count += 1;
                 }
 
         }
 
-        println!("{}", count)
+        println!("Number of trials: {}", count)
 }
