@@ -1,15 +1,12 @@
-use std::io::{self, Write};
 
 fn main() {
+    use std::io;
     let mut input = String::new();
     let answer = "e";
     let mut count = 0;
 
     loop {
         print!("I am the beginning of the end, and the end of time and space. \nI am essential to creation, and I surround every place. What am I?: ");
-        
-        // Flush to ensure the prompt appears before waiting for input
-        io::stdout().flush().unwrap();
         
         // Clear the input buffer before each new read
         input.clear();
@@ -21,10 +18,17 @@ fn main() {
         let input = input.trim();
 
         // Check if the answer is correct
-        if input == answer {
-            break;  // Break out of the loop if the answer is correct
-        } else {
-            count += 1;  // Increment count if the answer is incorrect
+        match input {
+            // If input matches answer, break the loop
+            s if s == answer => {
+                println!("Number of trials: {}", count);
+                break;
+            }
+            // Otherwise, keep asking for input
+            _ => {
+                count += 1;
+                continue;
+            }
         }
     }
 
