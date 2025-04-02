@@ -1,8 +1,7 @@
 #[derive(Debug, PartialEq)]
 
 // Define a tuple struct to represent a Student. Each is identified by an id of type u32, their first name and last name.
-pub struct Student(pub u32, pub String, pub String)
-
+pub struct Student(pub u32, pub String, pub String);
 
 // functions to return the id, first name and last name.
 pub fn id(student: &Student) -> u32 {
