@@ -7,23 +7,7 @@ pub fn tic_tac_toe(table: [[char; 3]; 3]) -> String {
         return "player X won".to_string();
     }
 
-    // Check if there are any empty cells ('#')
-    let mut filled = true;
-    for row in table.iter() {
-        for &cell in row.iter() {
-            if cell == '#' {  // Assuming '#' is an empty cell
-                filled = false;
-                break;
-            }
-        }
-    }
-    
-    // If the board is full and no winner, it's a tie
-    if filled {
-        "tie".to_string()
-    } else {
-        "in progress".to_string() // If there's still an empty cell and no winner
-    }
+    return "tie".to_string()
 }
 
 
