@@ -3,26 +3,37 @@
 // so that "helll-o" and "he+lllo" are both converted to "hello". 
 // The - and + characters should be removed from the string.
 pub fn delete_and_backspace(s: &mut String) {
-    let mut new_string = Vec::new();
-    let mut chars = s.chars().peekable();
-
-    while let Some(c) = chars.next() {
-        match c {
-            '-' => {
-                new_string.pop();
+    let mut chars: Vec<char> = s.chars().collect();
+    let mut i = 0;
+    
+    // First pass: Handle '+' (delete operation)
+    while i < chars.len() {
+        if chars[i] == '+' {
+            chars.remove(i);
+            if i < chars.len() {
+                chars.remove(i);
             }
-            '+' => {
-                if let Some(_) = chars.next() {
-                    // Skip the next character
-                }
-            }
-            _ => {
-                new_string.push(c);
-            }
+        } else {
+            i += 1;
         }
     }
-    *s = new_string.iter().collect();
+
+    i = 0;
+    while i < chars.len() {
+        if chars[i] == '-' {
+            if i > 0 {
+                chars.remove(i - 1);
+                i -= 1;
+            }
+            chars.remove(i);
+        } else {
+            i += 1;
+        }
+    }
+
+    *s = chars.into_iter().collect();
 }
+
 
 
 
