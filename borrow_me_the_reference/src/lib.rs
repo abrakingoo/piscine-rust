@@ -4,8 +4,7 @@
 // The - and + characters should be removed from the string.
 pub fn delete_and_backspace(s: &mut String) {
     let mut new_string = Vec::new();
-
-    let chars = s.chars().peekable();
+    let mut chars = s.chars().peekable();
 
     while let Some(c) = chars.next() {
         match c {
@@ -13,11 +12,12 @@ pub fn delete_and_backspace(s: &mut String) {
                 new_string.pop();
             }
             '+' => {
-                if let Some(_) = char.next();
+                if let Some(_) = chars.next() {
+                    // Handle delete: remove the next character by consuming it
+                }
             }
-
             _ => {
-                new_string.push(c);
+                new_string.push(c); 
             }
         }
     }
@@ -25,26 +25,30 @@ pub fn delete_and_backspace(s: &mut String) {
     *s = new_string.iter().collect();
 }
 
+
 // borrows a vector of string literals representing simple addition and subtraction equations. 
 // The function should replace the operation with the result
 pub fn do_operations(v: &mut [String]) {
     for item in v.iter_mut() {
+
+        // Parsing the values and handling addition
         if item.contains('+') {
             let values: Vec<&str> = item.split('+').collect();
 
-            if let (ok(val1), ok(val2)) = (values[0].parse::<i32>(), values[1].parse::<i32>());
-            let res = val + val2;
-
-            *item = res.to_string();
+            if let (Ok(val1), Ok(val2)) = (values[0].parse::<i32>(), values[1].parse::<i32>()) {
+                let res = val1 + val2;
+                *item = res.to_string();
+            }
         }
 
+        // Parsing the values and handling subtraction
         if item.contains('-') {
             let values: Vec<&str> = item.split('-').collect();
 
-            if let (ok(val1), ok(val2)) = (values[0].parse::<i32>(), values[1].parse::<i32>());
-            let res = val1 - val2;
-
-            *item = res.to_string();
+            if let (Ok(val1), Ok(val2)) = (values[0].parse::<i32>(), values[1].parse::<i32>()) {
+                let res = val1 - val2;
+                *item = res.to_string();
+            }
         }
     }
 }
