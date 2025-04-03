@@ -13,17 +13,17 @@ pub fn delete_and_backspace(s: &mut String) {
             }
             '+' => {
                 if let Some(_) = chars.next() {
-                    // Handle delete: remove the next character by consuming it
+                    // Skip the next character
                 }
             }
             _ => {
-                new_string.push(c); 
+                new_string.push(c);
             }
         }
     }
-
     *s = new_string.iter().collect();
 }
+
 
 
 // borrows a vector of string literals representing simple addition and subtraction equations. 
