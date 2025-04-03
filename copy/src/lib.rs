@@ -5,6 +5,7 @@
         // the exponential function of the value.
         // and the natural logarithm of the absolute value.
 pub fn nbr_function(c: i32) -> (i32, f64, f64) {
+    let original_value = c.clone();
     let exponential_value = (c as f64).exp();
     let logarithm_value = (c.abs() as f64).ln();
 
