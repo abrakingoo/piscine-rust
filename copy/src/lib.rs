@@ -16,23 +16,23 @@ pub fn nbr_function(c: i32) -> (i32, f64, f64) {
         // with the original value.
         // and the exponential function of each value as a string (see the example).
 pub fn str_function(a: String) -> (String, String) {
-    let original_value = a.clone();
-
-    // Create a string to hold the result of the exponentiation of each character
-    let mut exponential_values = String::new();
-
-    // Iterate over each character in the string
-    for c in a.chars() {
-        // Convert the character to its ASCII value (using `as u8`), then calculate the exponential
-        let exp_val = (f64::exp(c as u8 as f64)).to_string();
+            // Split the string into individual parts
+            let parts: Vec<&str> = a.split_whitespace().collect();
         
-        // Append the result to the string
-        exponential_values.push_str(&exp_val);
-        exponential_values.push(' '); // Space between each exponential value for readability
-    }
-
-    // Return the tuple: (original string, string with exponential values)
-    (original_value, exponential_values.trim().to_string()) // trim to remove the last extra space
+            // Calculate the exponential function for each part and collect into a new Vec
+            let exp_values: Vec<String> = parts
+                .iter()
+                .map(|&part| {
+                    let value: f64 = part.parse().unwrap(); // Parse the string into a float
+                    format!("{}", value.exp()) // Calculate the exponential and convert to string
+                })
+                .collect();
+        
+            // Join the calculated exponential values into a single string
+            let exp_string = exp_values.join(" ");
+        
+            // Return the original string and the exponential string as a tuple
+            (a, exp_string)
 }
 
 // vec_function returns a tuple:
