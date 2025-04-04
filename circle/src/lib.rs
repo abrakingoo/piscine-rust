@@ -41,12 +41,11 @@ impl Circle {
     }
 
     // Check if two circles intersect based on their center and radius
-    pub fn intersect(&self, other: &Circle) -> bool {
-        let distance = (self.center - other.center).abs(); // Calculate the distance between centers (1D for now)
-        let sum_of_radii = self.radius + other.radius; // Sum of the radii of both circles
-
-        // The circles intersect if the distance between centers is less than or equal to the sum of the radii
-        distance <= sum_of_radii
+    pub fn intersect(&self, circle: &Circle) -> bool {
+        if self.center.distance(&circle.center) > circle.radius + self.radius {
+			return false;
+		}
+		true
     }
 }
 
