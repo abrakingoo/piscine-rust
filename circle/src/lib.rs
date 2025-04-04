@@ -13,9 +13,9 @@
             // new() -> receives three 64-bit floating point numbers in the following order: 
             // x, y and radius (x and y are the coordinates of the center of the new circle). 
             // The function returns a new circle.
-#[derive(Debug, Clone, Copy)]
 use std::f64::consts::PI;
-
+            
+#[derive(Debug)]
 pub struct Circle {
     pub center: Point,
     pub radius: f64,
