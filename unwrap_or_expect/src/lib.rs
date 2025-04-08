@@ -23,7 +23,7 @@ pub fn fetch_data(server: Result<&str, &str>, security_level: Security) -> Strin
     match (server, security_level) {
         (Ok(url), _) => url.to_string(),
 
-        (Err(msg), Security::Unknown) => panic!(),
+        (Err(url), Security::Unknown) => url.to_string(),
         (Err(_), Security::Message) => panic!("ERROR: program stops"),
         (Err(_), Security::Warning) => "WARNING: check the server".to_string(),
         (Err(e), Security::NotFound) => format!("Not found: {}", e),
