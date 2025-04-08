@@ -19,7 +19,7 @@ pub enum Security {
     UnexpectedUrl,
 }
 
-pub fn fetch_data(server: Result<String, String>, security_level: Security) -> String {
+pub fn fetch_data(server: Result<&str, &str>, security_level: Security) -> String  {
     match (server, security_level) {
         (Ok(url), _) => url,
 
