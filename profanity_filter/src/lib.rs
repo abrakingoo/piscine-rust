@@ -23,4 +23,3 @@ pub fn check_ms(message: &str) -> Result<&str, &str> {
         None => Err("ERROR: illegal"),
     }
 }
-
