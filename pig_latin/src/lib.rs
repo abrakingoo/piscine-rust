@@ -1,33 +1,32 @@
 pub fn pig_latin(text: &str) -> String {
-    let vowels = "aeiou";
-    let mut chars = text.chars();
-
-    // Check if the first letter is a vowel
-    if let Some(first_char) = chars.clone().next() {
-        if vowels.contains(first_char) {
-            return format!("{}ay", text); // If the word starts with a vowel, add "ay"
-        }
-    }
-
-    // Check for "qu" as a consonant cluster
-    if text.starts_with("qu") {
-        return format!("{}ay", text[2..].to_string() + "qu"); // Convert text[2..] to String and concatenate "qu"
-    }
-
-    // Otherwise, find the first vowel and apply the transformation
-    for (i, c) in text.chars().enumerate() {
-        if vowels.contains(c) {
-            // Move all consonants before the first vowel to the end
-            return format!("{}{}ay", &text[i..], &text[..i]);
-        }
-    }
-
-    text.to_string() // In case of an empty or non-vowel starting word
+    text.split_whitespace()
+        .map(|s| {
+            let mut nb_chars_to_move = 0;
+            for c in s.chars() {
+                if !is_vowel(c) {
+                    nb_chars_to_move += 1;
+                } else {
+                    break;
+                }
+            }
+            if nb_chars_to_move >= 2
+                && nb_chars_to_move < s.len()
+                && s.chars().nth(nb_chars_to_move - 1) == Some('q')
+                && s.chars().nth(nb_chars_to_move) == Some('u')
+            {
+                nb_chars_to_move += 1;
+            }
+            format!("{}{}ay", &s[nb_chars_to_move..], &s[0..nb_chars_to_move])
+        })
+        .collect::<Vec<String>>()
+        .join(" ")
 }
 
-// Explanation:
-// First Check: If the first character is a vowel, we just append "ay" to the word.
+fn is_vowel(mut c: char) -> bool {
+    c = lowercase(c);
+    c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u'
+}
 
-// Second Check: If the word starts with "qu", it gets moved to the end of the word and "ay" is appended.
-
-// Default Case: We loop through the string, find the first vowel, and then move all consonants before it to the end.
+fn lowercase(c: char) -> char {
+    c.to_lowercase().to_string().chars().next().unwrap()
+}
