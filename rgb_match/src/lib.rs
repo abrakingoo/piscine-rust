@@ -8,40 +8,78 @@ pub struct Color {
 
 impl Color {
     pub fn swap(mut self, first: u8, second: u8) -> Color {
-        if first == self.r || first == self.g || first == self.b || first == self.a {
-            if second == self.r || second == self.g || second == self.b || second == self.a {
-                // Swap the values
-                if first == self.r {
+        match first {
+            v if v == self.r => match second {
+                v if v == self.b => {
                     self.r = second;
-                } else if first == self.g {
-                    self.g = second;
-                } else if first == self.b {
-                    self.b = second;
-                } else {
-                    self.a = second;
-                }
-                if second == self.r {
-                    self.r = first;
-                } else if second == self.g {
-                    self.g = first;
-                } else if second == self.b {
                     self.b = first;
-                } else {
+                }
+                v if v == self.g => {
+                    self.r = second;
+                    self.g = first;
+                }
+                v if v == self.a => {
+                    self.r = second;
                     self.a = first;
                 }
-            }
+                _ => {}
+            },
+
+            v if v == self.g => match second {
+                v if v == self.r => {
+                    self.g = second;
+                    self.r = first;
+                }
+                v if v == self.b => {
+                    self.g = second;
+                    self.b = first;
+                }
+                v if v == self.a => {
+                    self.g = second;
+                    self.a = first;
+                }
+                _ => {}
+            },
+
+            v if v == self.a => match second {
+                v if v == self.r => {
+                    self.a = second;
+                    self.r = first;
+                }
+                v if v == self.b => {
+                    self.a = second;
+                    self.b = first;
+                }
+                v if v == self.g => {
+                    self.a = second;
+                    self.g = first;
+                }
+                _ => {}
+            },
+
+            v if v == self.b => match second {
+                v if v == self.r => {
+                    self.b = second;
+                    self.r = first;
+                }
+                v if v == self.g => {
+                    self.b = second;
+                    self.g = first;
+                }
+                v if v == self.a => {
+                    self.b = second;
+                    self.a = first;
+                }
+                _ => {}
+            },
+            _ => {}
         }
-        self
+
+        Color {
+            r: self.r,
+            g: self.g,
+            b: self.b,
+            a: self.a,
+        }
     }
 }
-
-// Explanation:
-// Struct Color: We have the Color struct with the r, g, b, and a channels, all of type u8.
-
-// Swap Logic:
-
-// We check if both first and second are valid color components (r, g, b, or a).
-
-// If valid, we perform the swap operation between first and second values.
-
-// After the swap, we return the updated Color struct.
