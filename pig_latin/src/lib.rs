@@ -11,7 +11,7 @@ pub fn pig_latin(text: &str) -> String {
 
     // Check for "qu" as a consonant cluster
     if text.starts_with("qu") {
-        return format!("{}ay", &text[2..] + "qu"); // Move "qu" to the end
+        return format!("{}ay", text[2..].to_string() + "qu"); // Convert text[2..] to String and concatenate "qu"
     }
 
     // Otherwise, find the first vowel and apply the transformation
